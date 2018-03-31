@@ -1,72 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Smart Contract</title>
-
-    <link rel="stylesheet" type="text/css" href="http://res.cloudinary.com/cryptofrog/raw/upload/v1521068575/main.css">
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-    <script src="/my/my.js"></script>
-
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Smart Contract</title>
+  <link rel="stylesheet" type="text/css" href="http://res.cloudinary.com/cryptofrog/raw/upload/v1521068575/main.css">
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+  <script src="/my/my.js"></script>
 </head>
 <body>
-    <div class="Container Container--full">
-        <div class="Header">
-            <a class="Header-home" aria-current="false" href=".">
-                <div class="Header-logoWrapper">
-                    <div class="Header-logo">
-                    </div>
-                </div>
-                <h2 class="Header-wordmark" id="titleName">City of Bogota</h2>
-            </a>
-            <nav class="Header-navigation">
-                <a class="Header-navigation-item Header-navigation-item--active" aria-current="true" href="/my"></a>
-
-            </nav>
+  <div class="Container Container--full">
+    <div class="Header">
+      <a class="Header-home" aria-current="false" href=".">
+        <div class="Header-logoWrapper">
+          <div class="Header-logo">
+          </div>
         </div>
+        <h2 class="Header-wordmark" id="titleName">City of Bogota</h2>
+      </a>
+      <nav class="Header-navigation">
+        <a class="Header-navigation-item Header-navigation-item--active" aria-current="true" href="/my"></a>
+      </nav>
     </div>
+  </div>
 
-    <div class="container">
-
-                <h4><span class="black"><span id="balance"></span></span></h4>
-
-                <h3>City Infrastructure</h3>
-                <span id="countIns"></span>
-
-                <h3 id="instructor"></h3>
-
-                <hr>
-                <img id="loader" src="https://loading.io/spinners/double-ring/lg.double-ring-spinner.gif">
-
-                <label for="field_1" class="col-lg-2 control-label">Type of asset:</label>
-                <input id="field_1" type="text">
-
-                <label for="field_2" class="col-lg-2 control-label">Address:</label>
-                <input id="field_2" type="text">
-
-                <label for="field_3" class="col-lg-2 control-label">Service needs:</label>
-                <input id="field_3" type="text">
-
-                <label for="field_4" class="col-lg-2 control-label" id="impact_to">Impact to community:</label>
-                <input id="field_4" type="text">
-
-                <label for="field_5" class="col-lg-2 control-label">Due date:</label>
-                <input id="field_5" type="text">
-
-                <button id="setCED" onclick="App.setCED()">Create a contract</button>
-
-                <button id="getlastCED" onclick="App.receiveContract()"> Resident load the page </button>
-
-                <button id="clearAll" onclick="App.clearAll()">Clear all</button>
-                <span id="insTrans"></span>
-
-            </div>
-
-
-
-
+  <div class="container">
+    <h4><span class="black"><span id="balance"></span></span></h4>
+    <h3>City Infrastructure</h3>
+    <span id="countIns"></span>
+    <h3 id="instructor"></h3>
+    <hr>
+    <img id="loader" src="https://loading.io/spinners/double-ring/lg.double-ring-spinner.gif">
+    <label for="field_1" class="col-lg-2 control-label">Type of asset:</label>
+    <input id="field_1" type="text">
+    <label for="field_2" class="col-lg-2 control-label">Address:</label>
+    <input id="field_2" type="text">
+    <label for="field_3" class="col-lg-2 control-label">Service needs:</label>
+    <input id="field_3" type="text">
+    <label for="field_4" class="col-lg-2 control-label" id="impact_to">Impact to community:</label>
+    <input id="field_4" type="text">
+    <label for="field_5" class="col-lg-2 control-label">Due date:</label>
+    <input id="field_5" type="text">
+    <button id="setCED" onclick="App.setCED()">Create a contract</button>
+    <button id="getlastCED" onclick="App.receiveContract()"> Resident load the page </button>
+    <button id="clearAll" onclick="App.clearAll()">Clear all</button>
+    <span id="insTrans"></span>
+  </div>
 </body>
 </html>

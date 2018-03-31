@@ -1,6 +1,10 @@
 // Import libraries we need.
-import { default as Web3} from 'web3';
-import { default as contract } from 'truffle-contract'
+import {
+  default as Web3
+} from 'web3';
+import {
+  default as contract
+} from 'truffle-contract'
 
 // Import contract artifacts and turn them into usable abstractions.
 import CityContract_artifacts from '../../build/contracts/CityContract.json'
@@ -11,12 +15,11 @@ var CityContract = contract(CityContract_artifacts);
 var MetaCoin = contract(metacoin_artifacts);
 
 // For application bootstrapping, check out window.addEventListener below.
-var sellrate =1;
-var buyrate =1;
-var city =1;
-var wprice =1;
-var bprice =1;
-
+var field_1;
+var field_2;
+var field_3;
+var field_4;
+var field_5;
 var accounts;
 var account;
 var Coursetro;
@@ -66,57 +69,56 @@ window.App = {
     var cert;
     CityContract.deployed().then(function(instance) {
       cert = instance;
-      return cert.getlastWonderStruct({from: account});
-    }).then(function(result){
-        if(result)
-            {
-              $("#titleName").html("Resident Home");
-              $("#instructor").html("You have a notice from urban planning. ");
-              sellrate = web3.toAscii(result[2]);
-              $("#field_1").val(sellrate);
-              buyrate = web3.toAscii(result[3]);
-              $("#field_2").val(buyrate);
-              city = web3.toAscii(result[4]);
-              $("#field_3").val(city );
-              wprice = web3.toAscii(result[5]);
-              $("#impact_to").html("Impact to your city:");
-              $("#field_4").val(wprice );
-              bprice = web3.toAscii(result[6]);
-              $("#field_5").val(bprice);
-              console.log('field_4: ' + sellrate + ' buy price rate: ' + buyrate );
-            }
-        else{
-              $("#loader").hide();
-            }
+      return cert.getlastWonderStruct({
+        from: account
+      });
+    }).then(function(result) {
+      if (result) {
+        $("#titleName").html("Resident Home");
+        $("#instructor").html("You have a notice from urban planning. ");
+        field_1 = web3.toAscii(result[2]);
+        $("#field_1").val(field_1);
+        field_2 = web3.toAscii(result[3]);
+        $("#field_2").val(field_2);
+        field_3 = web3.toAscii(result[4]);
+        $("#field_3").val(field_3);
+        $("#impact_to").html("Impact to your city:");
+        field_4 = web3.toAscii(result[5]);
+        $("#field_4").val(field_4);
+        field_5 = web3.toAscii(result[6]);
+        $("#field_5").val(field_5);
+        console.log('field: come out');
+      } else {
+        $("#loader").hide();
+      }
     }).catch(function(e) {
       console.log(e);
       self.setStatus("Error getPrices; see log.");
     });
 
 
-    var outtext;
     CityContract.deployed().then(function(instance) {
       cert = instance;
-      return cert.getlastWonderStruct({from: account});
-    }).then(function(result){
-        var text = 'test';
-        if(result)
-          {
-            $("#loader").hide();
-            $("#insTrans").html('MetaMask User Account: ' + web3.eth.defaultAccount);
+      return cert.getlastWonderStruct({
+        from: account
+      });
+    }).then(function(result) {
+      var text = 'test';
+      if (result) {
+        $("#loader").hide();
+        $("#insTrans").html('MetaMask User Account: ' + web3.eth.defaultAccount);
 
-            console.log("refresh get last nameid: " + result[3] + ' description id' + String(text)  + " Price: " + result[2]/sellrate);
-          }
-        else{
-            $("#loader").show();
-          }
+        console.log("refresh get last nameid ");
+      } else {
+        $("#loader").show();
+      }
     }).catch(function(e) {
       console.log(e);
       self.setStatus("Error result getlastWonderStruct; see log.");
     });
 
-    var count ;
-    var output ;
+    var count;
+    var output;
     var cityContract;
     var cert;
 
@@ -125,35 +127,31 @@ window.App = {
       cityContract = web3.eth.contract(cert.abi);
       Coursetro = cityContract.at(cert.address);
       return cert.countWonderStructs();
-    }).then(function(result ){
+    }).then(function(result) {
       if (result) {
         count = result.c;
         output = 'Below is your latest profile<hr>';
         for (var i = 0; i < count; i++) {
-           Coursetro.getWonderStructByAddress(i, web3.eth.defaultAccount, function(error, result){
+          Coursetro.getWonderStructByAddress(i, web3.eth.defaultAccount, function(error, result) {
             var text = '';
-            if(result)
-                {
-                    var icase = result[4]%6+1;
-                    if (result[1]==0) {
-                        console.log("refresh get last nameid no id found under user account: "+web3.eth.defaultAccount);
-                    }
-                    else{
-                    console.log("refresh get last nameid: " + outtext);
-                    }
-                }
-            else{
-                $("#loader").hide();
-                console.error(error);
+            if (result) {
+              var icase = result[4] % 6 + 1;
+              if (result[1] == 0) {
+                console.log("refresh get last nameid no id found under user account: " + web3.eth.defaultAccount);
+              } else {
+                console.log("refresh get last nameid: ");
+              }
+            } else {
+              $("#loader").hide();
+              console.error(error);
             }
           });
-         }
+        }
       }
     }).catch(function(e) {
       console.log(e);
       self.setStatus("Error countWonderStructs; see log.");
     });
-
   },
 
   setCED: function() {
@@ -161,24 +159,23 @@ window.App = {
     var cert;
     CityContract.deployed().then(function(instance) {
       cert = instance;
-      return cert.setWonderStruct(web3.eth.defaultAccount, $("#field_1").val(), $("#field_2").val(), $("#field_3").val(), $("#field_4").val(), $("#field_5").val(),{from: account});
+      return cert.setWonderStruct(web3.eth.defaultAccount, $("#field_1").val(), $("#field_2").val(), $("#field_3").val(), $("#field_4").val(), $("#field_5").val(), {
+        from: account
+      });
 
-    }).then(function(result ){
-                if(result)
-                    {
-                        console.log("set contract value: " + $("#field_1").val() + " " + $("#field_2").val() + " Price: " +$("#field_3").val() + " for "+web3.eth.defaultAccount);
-                        $("#loader").hide();
-                    }
-                else{
-                        console.log("Please check error: etheruem user is not authorize to setWonderStruct");
-                        console.error(error);
-                        $("#loader").hide();
-                }
+    }).then(function(result) {
+      if (result) {
+        console.log("set contract value: " + $("#field_1").val() + " " + $("#field_2").val() + " Price: " + $("#field_3").val() + " for " + web3.eth.defaultAccount);
+        $("#loader").hide();
+      } else {
+        console.log("Please check error: etheruem user is not authorize to setWonderStruct");
+        console.error(error);
+        $("#loader").hide();
+      }
     }).catch(function(e) {
       console.log(e);
       self.setStatus("Error setWonderStruct; see log.");
     });
-
   },
 
   eventwonderInfo: function() {
@@ -186,17 +183,17 @@ window.App = {
     var cert;
     CityContract.deployed().then(function(instance) {
       cert = instance;
-      return cert.wonderInfo({}, 'latest',{from: account});
-    }).then(function(result ){
-        var text = 'test';
-        if(result)
-            {
-                $("#loader").show();
-                console.log("Event watch change Instructor: " + result.args.field_1 + ' ' + String(text)   + result.args.age/sellrate);
-             }
-        else{
-             $("#loader").show();
-            }
+      return cert.wonderInfo({}, 'latest', {
+        from: account
+      });
+    }).then(function(result) {
+      var text = 'test';
+      if (result) {
+        $("#loader").show();
+        console.log("Event watch change Instructor: " + result.args.field_1 + ' ' + String(text) + result.args.age / sellrate);
+      } else {
+        $("#loader").show();
+      }
     }).catch(function(e) {
       console.log(e);
       self.setStatus("Error getting wonderInfo; see log.");
@@ -204,13 +201,13 @@ window.App = {
   },
 
   clearAll: function() {
-      $("#instructor").html("");
-      $("#field_1").val("");
-      $("#field_2").val("");
-      $("#field_3").val("");
-      $("#field_4").val("");
-      $("#field_5").val("");
-      $("#titleName").html("City of Bogota");
+    $("#instructor").html("");
+    $("#field_1").val("");
+    $("#field_2").val("");
+    $("#field_3").val("");
+    $("#field_4").val("");
+    $("#field_5").val("");
+    $("#titleName").html("City of Bogota");
   },
 
   refreshMetaCoin: function() {
@@ -218,7 +215,9 @@ window.App = {
     var meta;
     MetaCoin.deployed().then(function(instance) {
       meta = instance;
-      return meta.getBalance.call(account, {from: account});
+      return meta.getBalance.call(account, {
+        from: account
+      });
     }).then(function(value) {
       var balance_element = document.getElementById("balance");
       balance_element.innerHTML = value.valueOf();
